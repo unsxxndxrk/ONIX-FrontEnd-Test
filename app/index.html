@@ -138,25 +138,25 @@
                 <div class="header__nav">
                     <ul class="header__nav-list d-flex"> 
                         <li class="header__nav-list-item">
-                            <a href="#">Tasks</a>
+                            <a href="#" class="header__nav-list-item-link" data-target="tasks">Tasks</a>
                         </li>
                         <li class="header__nav-list-item">
-                            <a href="#">Kanban</a>
+                            <a href="#" class="header__nav-list-item-link" data-target="kanban">Kanban</a>
                         </li>
                         <li class="header__nav-list-item">
-                            <a href="#" class="header__nav-li_active">Activity</a>
+                            <a href="#" class="header__nav-list-item-link header__nav-li_active" data-target="activity">Activity</a>
                         </li>
                         <li class="header__nav-list-item">
-                            <a href="#">Calendar</a>
+                            <a href="#" class="header__nav-list-item-link" data-target="calendar">Calendar</a>
                         </li>
                         <li class="header__nav-list-item">
-                            <a href="#">Files</a>
+                            <a href="#" class="header__nav-list-item-link" data-target="files">Files</a>
                         </li>   
                     </ul>
                 </div>
             </section>
             <section id="main" class="main">
-                <div class="main-container">
+                <div class="main-container active" id="activity">
                     <div class="main__card">            
                         <div class="main__card-title upper">
                             Today
@@ -358,5 +358,6 @@
     </div>
 <!-- Scripts -->
 <script src="js/Home/home.js"></script>
+<script src="js/content.js"></script>
 </body>
 </html>

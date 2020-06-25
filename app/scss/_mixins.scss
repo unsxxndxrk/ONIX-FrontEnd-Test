@@ -76,11 +76,14 @@
                         padding-bottom: 14px;
                         display: block;
                         border-bottom: 2px solid transparent;
+                        transition: $smooth;
 
                         &.header__nav-li_active {
                             border-bottom: 2px solid $accent;
                             opacity: 1;
                         }
+
+                        &:hover { opacity: 1; }
                     }
                 }
             }
@@ -284,6 +287,9 @@
     font-size: 14px;
     border-radius: 15px;
     margin-right: 15px;
+    transition: $smooth;
+
+    &:hover { box-shadow: 0 2px 4px rgba(0, 0, 0, .1); }
 
     &:last-child { margin-right: 0; }
     & span { cursor: pointer; }
@@ -335,8 +341,15 @@
         .main-container {
             width: $main-container-init-w;
             margin: 0 auto;
-            padding-top: 30px;
+            padding-top: 100px;
             padding-bottom: 500px;
+            opacity: 0;
+            transition: $smooth;
+
+            &.active {
+                opacity: 1;
+                padding-top: 30px;  
+            }
 
             @include main_card();
         }
