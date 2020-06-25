@@ -1,3 +1,5 @@
-$(function() {
-	//code...
-});
+"use strict"
+
+window.onload = () => {
+
+}
