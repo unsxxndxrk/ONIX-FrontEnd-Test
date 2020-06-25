@@ -434,6 +434,7 @@
     @media screen and (max-width: 780px) {
         .main__card {
             padding: 30px 25px 50px 25px;
+            margin-bottom: 25px;
 
             .main__card-title { font-size: 13px; }
     
@@ -489,6 +490,7 @@
     @media screen and (max-width: 630px) {
         .main__card {
             padding: 20px 15px 40px 20px;
+            margin-bottom: 20px;
     
             .main__card-messages {
                 .main__card-messages-list {
@@ -532,6 +534,7 @@
     @media screen and (max-width: 450px) {
         .main__card {
             padding: 15px 10px 25px 15px;
+            margin-bottom: 15px;
     
             .main__card-messages {
                 .main__card-messages-list {
@@ -602,12 +605,14 @@
                     margin-right: 13px;
                 }
 
-                .sidebar__top-label { font-size: 16px; }
+                .sidebar__top-label { font-size: 16px; transition: $smooth; }
+
+                &:hover { .sidebar__top-label { color: $accent; } }
             }
 
             .sidebar__top-search {
                 width: 16px;
-                cursor: pointer;
+                cursor: pointer;    
             }
         }
 
@@ -629,13 +634,15 @@
                     .sidebar__user-block-profile-data-name {
                         padding-left: 13px;
 
-                        div:first-child { font-size: 14px; }
+                        div:first-child { font-size: 14px; transition: $smooth; }
 
                         div:last-child {
                             font-size: 12px;
                             color: #9B9B9B;
                         }
                     }
+
+                    &:hover { .sidebar__user-block-profile-data-name { div:first-child { color: $accent; } } }
                 }
 
                 .sidebar__user-block-profile-control {
@@ -657,6 +664,7 @@
                 color: $light_text;
                 text-decoration: none;
                 margin-right: 19px;
+                transition: $smooth;
 
                 &:last-child { margin-right: 0; }
                 .sidebar__user-stat-counter { font-size: 20px; }
@@ -665,6 +673,8 @@
                     font-size: 12px;
                     opacity: .5;
                 }
+
+                &:hover { color: $accent; }
             }
         }
 
@@ -696,6 +706,8 @@
                             color: $text;
                             font-size: 13px;
                         }
+
+                        &:hover { text-decoration: underline; }
                     }
                 }
             }

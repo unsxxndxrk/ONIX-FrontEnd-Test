@@ -7,19 +7,22 @@ window.onload = () => {
         fakeOpenSidebar    = document.getElementById('open_sidebar_fake'),
         mobileSidebarClose = document.getElementById('mobile_close_sidebar')
 
+    const closeSidebar = () => {
+        openSidebarBtn.checked = false
+        rootWrapper.classList.remove('active')
+        fakeOpenSidebar.classList.remove('active')
+    }
+
     openSidebarBtn.onclick = event => {
         if (event.target.checked) {
             rootWrapper.classList.add('active')
             fakeOpenSidebar.classList.add('active')
-        } else {
-            rootWrapper.classList.remove('active')
-            fakeOpenSidebar.classList.remove('active')
-        }
+        } else { closeSidebar() }
     }
 
-    mobileSidebarClose.onclick = () => {
-        openSidebarBtn.checked = false
-        rootWrapper.classList.remove('active')
-        fakeOpenSidebar.classList.remove('active')
+    mobileSidebarClose.onclick = () => { closeSidebar() }
+
+    rootWrapper.onclick = event => {
+        event.target.id !== 'open_sidebar' ? closeSidebar() : ''
     }
 }
