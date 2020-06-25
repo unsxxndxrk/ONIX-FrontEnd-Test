@@ -1,3 +1,793 @@
 @import "vars";
 
-//code
+@mixin header() {
+    .header {
+        padding: 39.5px 30px 0 30px;
+        background: $header-bg;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, .1);
+        z-index: 999;
+        position: relative;
+
+        .header-wrapper {
+            .header__heading {
+                .header__heading-info {
+                    .header__heading-icon {
+                        height: 40px;
+                        width: 40px;
+                        background: #ffc200;
+                        border-radius: 10px;
+                    }
+
+                    .header__heading-label {
+                        font-size: 32px;
+                        margin-left: 15px;
+                    }
+                }
+
+                .header__heading-control {
+                    margin-left: 11px;
+
+                    @include control_list();
+
+                    input {
+                        width: 30px;
+                        height: 30px;
+                        top: 0;
+                        opacity: 0;
+                        cursor: pointer;
+                    }
+                }
+            }
+
+            .header__media {
+                .header__media-members {
+                    .header__media-member {
+                        height: 30px;
+                        width: 30px;
+                        border-radius: 50%;
+                        margin-right: 5px;
+
+                        &:last-child { margin-right: 0; }
+                    }
+                }
+
+                .header__media-buttons {
+                    margin-left: 15px;
+                    
+                    .heading-media-button:first-child { @include heading_media_button($text, $sec-gray); }
+                    .heading-media-button:last-child { @include heading_media_button($accent, $sec-yellow); }
+                }
+            }
+        }
+
+        .header__nav {
+            padding-top: 20.5px;
+
+            .header__nav-list {
+                .header__nav-list-item {
+                    margin-right: 27px;
+                    &:last-child { margin-right: 0; }
+
+                    a {
+                        font-size: 16px;
+                        opacity: .7;
+                        color: $text;
+                        text-decoration: none;
+                        padding-bottom: 14px;
+                        display: block;
+                        border-bottom: 2px solid transparent;
+
+                        &.header__nav-li_active {
+                            border-bottom: 2px solid $accent;
+                            opacity: 1;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 780px) {
+        .header {
+            .header-wrapper {
+                .header__heading {
+                    .header__heading-info {
+                        .header__heading-icon {
+                            height: 30px;
+                            width: 30px;
+                        }
+    
+                        .header__heading-label { font-size: 25px; }
+                    }
+    
+                    .header__heading-control { margin-left: 10px; }
+                }
+    
+                .header__media {
+                    .header__media-members {
+                        .header__media-member {
+                            height: 25px;
+                            width: 25px;
+                        }
+                    }
+    
+                    .header__media-buttons { margin-left: 10px; }
+                }
+            }
+    
+            .header__nav {
+                padding-top: 20px;
+    
+                .header__nav-list {
+                    .header__nav-list-item {
+                        margin-right: 25px;
+            
+                        a {
+                            font-size: 14px;
+                            padding-bottom: 13px;
+                        }
+                    }
+                }
+            }
+        }   
+    }
+
+    @media screen and (max-width: 630px) {
+        .header {
+            .header-wrapper { .header__media { .header__media-members { display: none; } } }
+    
+            .header__nav {
+                .header__nav-list {
+                    justify-content: space-between;
+
+                    .header__nav-list-item {
+                        margin-right: 25px;
+            
+                        a {
+                            font-size: 14px;
+                            padding-bottom: 13px;
+                        }
+                    }
+                }
+            }
+        }   
+    }
+
+    @media screen and (max-width: 580px) {
+        .header {
+            .header-wrapper {
+                .header__heading {
+                    .header__heading-info {
+                        .header__heading-icon {
+                            height: 25px;
+                            width: 25px;
+                            border-radius: 6px;
+                        }
+    
+                        .header__heading-label {
+                            font-size: 20px;
+                            margin-left: 10px;
+                        }
+                    }
+                }
+
+                .header__media { .header__media-buttons { margin-left: 5px; } }
+            }
+        }   
+    }
+
+    @media screen and (max-width: 450px) {
+        .header {
+            padding: 25px 10px 0 10px;
+            .header-wrapper {
+                .header__heading {
+                    .header__heading-info {
+                        .header__heading-icon { display: none; }
+    
+                        .header__heading-label {
+                            font-size: 18px;
+                            margin-left: 0;
+                        }
+                    }
+
+                    .header__heading-control { margin-left: 5px; }
+                }
+
+                .header__media { .header__media-buttons { margin-left: 5px; } }
+            }
+
+            .header__nav {
+                .header__nav-list {
+                    padding: 0 20px;
+                    .header__nav-list-item {
+                        margin-right: 0;
+            
+                        a {
+                            font-size: 12px;
+                            padding-bottom: 13px;
+                        }
+                    }
+                }
+            }
+        }   
+    } 
+}
+
+@mixin control_list() {
+    .header__heading-control-btn {
+        height: 30px;
+        width: 30px;
+        background: $sec-gray;
+        border-radius: 50%;
+        cursor: pointer;
+
+        .header__heading-control-btn-circles {
+            position: relative;
+            width: 60%;
+            div {
+                height: 4px;
+                width: 4px;
+                background: darken($sec-gray, 30%);
+                border-radius: 50%;
+                transition: all .2s ease;
+            }
+
+            &.active {
+                div:first-child, div:last-child {
+                    height: 20px;
+                    width: 2px;
+                    transform: rotate(45deg);
+                    margin-left: 8px;
+                    position: absolute;
+                    margin-top: -9px;
+                    border-radius: 2px;
+                }
+
+                div:last-child { transform: rotate(-45deg); }
+                div:nth-child(2) { opacity: 0; position: absolute; width: 0; height: 0; }
+            }
+        }
+    }
+
+    @media screen and (max-width: 450px) {
+        .header__heading-control-btn {
+            height: 20px;
+            width: 20px;
+    
+            .header__heading-control-btn-circles {
+                position: relative;
+                width: 65%;
+
+                div {
+                    height: 3px;
+                    width: 3px;
+                }
+    
+                &.active {
+                    div:first-child, div:last-child {
+                        height: 10px;
+                        margin-left: 5.5px;
+                        margin-top: -5.5px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@mixin heading_media_button($self_text, $self_bg) {
+    background: $self_bg;
+    height: 30px;
+    padding: 0 19px;
+    color: $self_text;
+    text-decoration: none;
+    font-size: 14px;
+    border-radius: 15px;
+    margin-right: 15px;
+
+    &:last-child { margin-right: 0; }
+    & span { cursor: pointer; }
+
+    & svg {
+        display: block;
+        width: 17px;
+        margin-right: 3px;
+    }
+
+    @media screen and (max-width: 780px) {
+        height: 25px;
+        padding: 0 15px;
+        font-size: 12px;
+        margin-right: 10px;
+
+        & svg { width: 15px; }
+    }
+
+    @media screen and (max-width: 780px) {
+        height: 20px;
+        padding: 0 10px;
+        font-size: 11px;
+        margin-right: 5px;
+
+        & svg { width: 10px; }
+    }
+
+    @media screen and (max-width: 450px) {
+        height: 20px;
+        padding: 0 5px;
+        font-size: 10px;
+    }
+}
+
+@mixin main() {
+    .main {
+        height: 100vh;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        position: relative;
+        background: $main_bg;
+
+        &::-webkit-scrollbar { width: 10px; }
+        &::-webkit-scrollbar-track { background: $sec-gray; }
+        &::-webkit-scrollbar-thumb { background: darken($main_bg, 15%); }
+        &::-webkit-scrollbar-thumb:hover { background: darken(darken($main_bg, 15%), 10%); }
+        
+        .main-container {
+            width: $main-container-init-w;
+            margin: 0 auto;
+            padding-top: 30px;
+            padding-bottom: 500px;
+
+            @include main_card();
+        }
+    }
+
+    @media screen and (max-width: 780px) { .main { .main-container { width: $main-container-mobile-w; } } }
+}
+
+@mixin main_card() {
+    .main__card {
+        padding: 35px 30px 60px 30px;
+        background: $card-bg;
+        border-radius: 8px;
+        width: 100%;
+        margin-bottom: 30px;
+
+        &:last-child { margin-bottom: 0; }
+
+        .main__card-title {
+            opacity: .5;
+            font-size: 14px;
+        }
+
+        .main__card-messages {
+            padding-top: 32px;
+
+            .main__card-messages-list {
+                .main__card-messages-list-item {
+                    margin-bottom: 30px;
+                    &:last-child { margin-bottom: 0; }
+
+                    a {
+                        color: $text;
+                        text-decoration: none;
+
+                        .main__card-messages-list-item-content {
+                            .main__card-messages-list-item-content-icon-wrapper {
+                                width: 40px;
+                                height: 40px;
+                                margin-right: 20px;
+                                
+                                .main__card-messages-list-item-content-icon {
+                                    width: 40px;
+                                    height: 40px;
+                                    border-radius: 50%;
+                                    margin-right: 20px;
+                                    
+                                    svg { width: 12px; }
+                                }    
+                            }
+                            
+                            .main__card-messages-list-item-content-text {
+                                width: 70%;
+                                font-size: 16px;
+                                line-height: 20px;
+                            }
+
+                            .main__card-messages-list-item-appendix {
+                                width: 100%;
+                                padding-top: 20px;
+
+                                .main__card-message-list-item-appendix-comment {
+                                    width: 100%;
+                                    background: $comment-bg;
+                                    border-radius: 10px;
+                                    padding: 20px 30px 20px 29px;
+                                    font-size: 15px;
+                                }
+
+                                .main__card-message-list-item-appendix-uploaded-pics {
+                                    .main__card-message-list-item-appendix-uploaded-pics-item {
+                                        height: 100px;
+                                        width: 100px;
+                                        margin-right: 10px;
+                                        border-radius: 8px;
+
+                                        &:last-child { margin-right: 0; }
+                                    }
+                                }
+                            }
+                        }
+    
+                        .main__card-messages-list-item-date {
+                            font-size: 14px;
+                            opacity: .7;
+    
+                            & div:last-child { margin-left: 4px; }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 780px) {
+        .main__card {
+            padding: 30px 25px 50px 25px;
+
+            .main__card-title { font-size: 13px; }
+    
+            .main__card-messages {
+                padding-top: 25px;
+    
+                .main__card-messages-list {
+                    .main__card-messages-list-item {
+                        a {
+                            .main__card-messages-list-item-content {
+                                .main__card-messages-list-item-content-icon-wrapper {
+                                    width: 30px;
+                                    height: 30px;
+                                    
+                                    .main__card-messages-list-item-content-icon {
+                                        width: 30px;
+                                        height: 30px;
+                                       
+                                        svg { width: 10px; }
+                                    }    
+                                }
+                                
+                                .main__card-messages-list-item-content-text {
+                                    font-size: 14px;
+                                    line-height: 17px;
+                                }
+    
+                                .main__card-messages-list-item-appendix {
+                                    padding-top: 18px;
+    
+                                    .main__card-message-list-item-appendix-comment {
+                                        padding: 15px 25px 15px 24px;
+                                        font-size: 15px;
+                                    }
+    
+                                    .main__card-message-list-item-appendix-uploaded-pics {
+                                        .main__card-message-list-item-appendix-uploaded-pics-item {
+                                            height: 90px;
+                                            width: 90px;
+                                        }
+                                    }
+                                }
+                            }
+        
+                            .main__card-messages-list-item-date { font-size: 12px; }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 630px) {
+        .main__card {
+            padding: 20px 15px 40px 20px;
+    
+            .main__card-messages {
+                .main__card-messages-list {
+                    .main__card-messages-list-item {
+                        a {
+                            .main__card-messages-list-item-content {
+                                .main__card-messages-list-item-content-text {
+                                    font-size: 13px;
+                                    line-height: 15px;
+                                }
+    
+                                .main__card-messages-list-item-appendix {
+                                    padding-top: 15px;
+    
+                                    .main__card-message-list-item-appendix-comment {
+                                        padding: 10px 15px 10px 19px;
+                                        font-size: 11px;
+                                        line-height: 15px;
+                                    }
+    
+                                    .main__card-message-list-item-appendix-uploaded-pics {
+                                        .main__card-message-list-item-appendix-uploaded-pics-item {
+                                            height: 70px;
+                                            width: 70px;
+                                        }
+                                    }
+                                }
+                            }
+        
+                            .main__card-messages-list-item-date {
+                                font-size: 10px;
+                                margin-top: -5px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 450px) {
+        .main__card {
+            padding: 15px 10px 25px 15px;
+    
+            .main__card-messages {
+                .main__card-messages-list {
+                    .main__card-messages-list-item {
+                        a {
+                            .main__card-messages-list-item-content {
+                                .main__card-messages-list-item-content-icon-wrapper { margin-right: 10px; }
+                                .main__card-messages-list-item-content-text {
+                                    font-size: 11px;
+                                    line-height: 13px;
+                                }
+    
+                                .main__card-messages-list-item-appendix {
+                                    padding-top: 10px;
+    
+                                    .main__card-message-list-item-appendix-comment {
+                                        padding: 5px 10px 5px 15px;
+                                        font-size: 10px;
+                                        line-height: 12px;
+                                    }
+    
+                                    .main__card-message-list-item-appendix-uploaded-pics {
+                                        .main__card-message-list-item-appendix-uploaded-pics-item {
+                                            height: 40px;
+                                            width: 40px;
+                                        }
+                                    }
+                                }
+                            }
+        
+                            .main__card-messages-list-item-date {
+                                font-size: 9px;
+                                margin-top: -5px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@mixin sidebar() {
+    .sidebar {
+        background: $aside-bg;
+        width: 100%;
+        height: 100vh;
+        color: $light_text;
+
+        .sidebar__track { width: $aside-w; }
+
+        .sidebar__mobile-close {
+            width: 100%;
+            padding: 20px 20px 0 0;
+            font-size: 11px;
+            opacity: .4;
+        }
+
+        .sidebar__top {
+            padding: 32.5px 16px 32.5px 30px;
+
+            .sidebar__top-logo {
+                text-decoration: none;
+                color: $light_text;
+
+                .sidebar__top-logo-icon {
+                    width: 21.6px;
+                    margin-right: 13px;
+                }
+
+                .sidebar__top-label { font-size: 16px; }
+            }
+
+            .sidebar__top-search {
+                width: 16px;
+                cursor: pointer;
+            }
+        }
+
+        .sidebar__user-block {
+            padding: 16px 20px 16px 30px;
+            background: #202020;
+
+            .sidebar__user-block-profile {
+                .sidebar__user-block-profile-data {
+                    color: $light_text;
+                    text-decoration: none;
+
+                    .sidebar__user-block-profile-data-pic {
+                        width: 48px;
+                        height: 48px;
+                        border-radius: 50%;
+                    }   
+
+                    .sidebar__user-block-profile-data-name {
+                        padding-left: 13px;
+
+                        div:first-child { font-size: 14px; }
+
+                        div:last-child {
+                            font-size: 12px;
+                            color: #9B9B9B;
+                        }
+                    }
+                }
+
+                .sidebar__user-block-profile-control {
+                    @include control_list();
+                    .header__heading-control-btn {
+                        background: transparent;
+                        width: 18px;
+                        
+                        .header__heading-control-btn-circles { width: 100%; }
+                    }
+                }
+            }
+        }
+
+        .sidebar__user-stats {
+            padding: 20px 0 31px 30px;
+
+            .sidebar__user-stat {
+                color: $light_text;
+                text-decoration: none;
+                margin-right: 19px;
+
+                &:last-child { margin-right: 0; }
+                .sidebar__user-stat-counter { font-size: 20px; }
+
+                .sidebar__user-stat-label {
+                    font-size: 12px;
+                    opacity: .5;
+                }
+            }
+        }
+
+        .sidebar__menu {
+            padding-left: 30px;
+            
+            .sidebar__menu-label {
+                font-size: 12px;
+                color: #878787;
+                margin-bottom: 16.2px;
+            }
+
+            .sidebar__menu-list {
+                .sidebar__menu-list-item {
+                    margin-bottom: 16.2px;
+                    
+                    a {
+                        color: $light_text;
+                        text-decoration: none;
+                        font-size: 14px;
+
+                        .sidebar__menu-list-item-notif {
+                            background: $accent;
+                            height: 20px;
+                            width: 20px;
+                            right: -30px;
+                            top: -3px;
+                            border-radius: 50%;
+                            color: $text;
+                            font-size: 13px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 1500px) { .sidebar { .sidebar__track { width: $aside-w-1500 !important; } } }
+    @media screen and (max-width: 1130px) { .sidebar { .sidebar__track { width: $aside-w-1130 !important; } } }
+    @media screen and (max-width: 1000px) { .sidebar { .sidebar__track { width: $aside-fixed !important; } } }
+
+    @media screen and (max-width: 780px) {
+        .sidebar {
+            .sidebar__top {
+                padding: 30px 15px 30px 30px;
+    
+                .sidebar__top-logo {
+                    .sidebar__top-logo-icon {
+                        width: 18px;
+                        margin-right: 10px;
+                    }
+    
+                    .sidebar__top-label {
+                        font-size: 15px;
+                        margin-top: -2px;
+                    }
+                }
+    
+                .sidebar__top-search { width: 15px; }
+            }
+    
+            .sidebar__user-block {
+                padding: 15px 15px 15px 30px;
+    
+                .sidebar__user-block-profile {
+                    .sidebar__user-block-profile-data {
+                        .sidebar__user-block-profile-data-pic {
+                            width: 40px;
+                            height: 40px;
+                        }   
+    
+                        .sidebar__user-block-profile-data-name {
+                            padding-left: 10px;
+    
+                            div:first-child { font-size: 13px; }
+    
+                            div:last-child { font-size: 11px; }
+                        }
+                    }
+                }
+            }
+    
+            .sidebar__user-stats {
+                padding: 20px 0 30px 30px;
+    
+                .sidebar__user-stat {
+                    margin-right: 17px;
+    
+                    .sidebar__user-stat-counter { font-size: 16px; }
+                    .sidebar__user-stat-label { font-size: 11px; }
+                }
+            }
+    
+            .sidebar__menu {
+                padding-left: 30px;
+                
+                .sidebar__menu-label {
+                    font-size: 11px;
+                    margin-bottom: 15px;
+                }
+    
+                .sidebar__menu-list {
+                    .sidebar__menu-list-item {
+                        margin-bottom: 15px;
+                        
+                        a {
+                            font-size: 13px;
+    
+                            .sidebar__menu-list-item-notif {
+                                background: $accent;
+                                height: 18px;
+                                width: 18px;
+                                right: -25px;
+                                color: $text;
+                                font-size: 12px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 630px) { .sidebar { .sidebar__track { width: $aside-fixed-630 !important; } } }
+    @media screen and (max-width: 520px) { .sidebar { .sidebar__mobile-close { display: flex; } } }
+}

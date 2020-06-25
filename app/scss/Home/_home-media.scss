@@ -1,4 +1,45 @@
 @import "../vars";
 @import "../mixins";
 
-//code
+@media screen and (max-width: 1500px) {
+    .root {
+        .root-wrapper {
+            &.active {
+                margin-left: $aside-w-1500;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1130px) {
+    .root {
+        .root-wrapper {
+            &.active {
+                margin-left: $aside-w-1130;
+                margin-right: -$aside-w-1130 !important;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .root {
+        .root-wrapper {
+            &.active {
+                margin-left: $aside-fixed;
+                margin-right: -$aside-fixed !important;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 630px) {
+    .root {
+        .root-wrapper {
+            &.active {
+                margin-left: $aside-fixed-630;
+                margin-right: -$aside-fixed-630 !important;
+            }
+        }
+    }
+}

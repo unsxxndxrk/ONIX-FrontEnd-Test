@@ -1,11 +1,30 @@
-$accent: darkblue;
+$accent: #FFC200;
 
-$text: #333;
-$light_text: #f7f7f7;
+$text: #131313;
+$light_text: #fff;
 
-$main_bg: #fafafa;
+$main_bg: #eeebe5;
 
-$container: 1190px;
-$container_responsive: 95%;
+$sec-green: #CEF9C6;
+$sec-yellow: #FFF8DD;
+$sec-blue: #E3EFFF;
+$sec-gray: #EAEAEA;
 
-$smooth: all .3s ease;
+$card-bg: #fff;
+$comment-bg: #F7F6F3;
+
+$aside-bg: #000;
+$aside-w: 18.8%;
+$aside-w-1500: 25%;
+$aside-w-1130: 30%;
+$aside-fixed: 300px;
+$aside-fixed-630: 250px;
+
+$header-bg: #fff;
+
+$main-container-init-w: 730px;
+$main-container-mobile-w: 95%;
+
+$smooth: all .4s ease;
+
+$test: 1px dotted red;

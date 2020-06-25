@@ -4,12 +4,6 @@ body {
 	font-family: 'Helvetica', sans-serif;
     color: $text;
     line-height: 1.5em;
-    background: $main_bg;
-}
-
-.container {
-	width: $container;
-    margin: 0 auto;
 }
 
 .upper { text-transform: uppercase; }
@@ -76,7 +70,7 @@ body {
     width: auto;
 }
 
-div, a, span, input, textarea, button { box-sizing: border-box; }
+div, a, span, input, textarea, button, aside { box-sizing: border-box; }
 
 input, textarea, button { outline: none; }
 
@@ -90,3 +84,10 @@ ul, li {
     margin: 0;
     padding: 0;
 }
+
+
+.bg-sec-green { background: $sec-green; }
+.bg-sec-yellow { background: $sec-yellow; }
+.bg-sec-blue { background: $sec-blue; svg { width: 13.5px !important; } }
+
+@media screen and (max-width: 780px) { .bg-sec-blue { background: $sec-blue; svg { width: 11px !important; } } }

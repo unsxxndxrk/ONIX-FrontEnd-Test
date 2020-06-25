@@ -8,6 +8,25 @@
 @import "../../css/fonts.css";
 @import "../../css/base.css";
 
-/* Code */ 
+.root {
+    padding-bottom: 200px;
+    @include sidebar();
+    height: 100vh;
+    overflow: hidden;
+
+    .root-wrapper {
+        width: 100%;
+        z-index: 10;
+        margin-left: 0;
+        transition: $smooth;
+
+        &.active {
+            margin-left: $aside-w;
+        }
+       
+        @include header();
+        @include main();
+    }
+}
 
 @import "home-media";
