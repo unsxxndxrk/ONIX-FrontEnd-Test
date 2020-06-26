@@ -39,22 +39,22 @@ gulp.task('watch', function(cb) {
 	gulp.watch('app/*.html').on('change', browserSync.reload);
 });
 
-gulp.task('img', function() {
-	return gulp.src('app/img/**/*')
+gulp.task('assets', function() {
+	return gulp.src('app/assets/**/*')
   		.pipe(cache(imagemin({ 
 	    	interlaced: true,
 		    progressive: true,
 		    svgoPlugins: [{removeViewBox: false}],
 		    use: [pngquant()]
 		})))
-		.pipe(gulp.dest('dist/img'));
+		.pipe(gulp.dest('dist/assets'));
 });
 
 gulp.task('clear', function() {
     return cache.clearAll();
 });
 
-gulp.task('build', gulp.series('clear', 'img', function(cb) {
+gulp.task('build', gulp.series('clear', 'assets', function(cb) {
     var buildCss = gulp.src([
         'app/css/**/*'
         ])
